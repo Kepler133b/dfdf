@@ -89,6 +89,7 @@ else
 fi
 
 #check printing format
+chmod 777 checksqueueprint.sh
 ./checksqueueprint.sh squeue
 print_result=$?
 if [ $print_result != 0 ]; then
