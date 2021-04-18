@@ -23,4 +23,5 @@ jobs:
       env:
         SH: "docker exec lab-env bash -c"
       run: |
+        $SH "chmod 777 check.sh"
         $SH "./check.sh"
