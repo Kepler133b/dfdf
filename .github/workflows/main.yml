@@ -1,0 +1,26 @@
+name: CMPUT 201 CI Check
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Pull docker container
+      run: |
+        docker pull snadi/ubuntu
+        docker run -d --name lab-env -v $(pwd):/travis -w /travis snadi/ubuntu:cmput201 tail -f /dev/null
+        docker ps -a
+    - name: Run check scripts
+      env:
+        SH: "docker exec lab-env bash -c"
+      run: |
+        $SH "./check.sh"
