@@ -153,7 +153,7 @@ else
 fi
         
 
-
+chmod 777 checkbucketstackprint.sh
 ./checkbucketstackprint.sh bucketstack
 print_result=$?
 if [ $print_result != 0 ]; then
